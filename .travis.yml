@@ -18,3 +18,18 @@ after_success:
   - docker push mohamedvall/multi-nginx
   - docker push mohamedvall/multi-server
   - docker push mohamedvall/multi-worker
+
+deploy:
+  provider: elastickbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "DockerReact-env-1"
+  bucket_name: "elasticbeanstalk-us-east-1-814688672775"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+  
